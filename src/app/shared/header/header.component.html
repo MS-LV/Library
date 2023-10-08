@@ -1,0 +1,38 @@
+<ng-container *ngIf="locale | async as locale">
+  <div class="logo">
+    <img src="assets/img/logo.svg" alt="ranobelib">
+  </div>
+  <ul  class="menu">
+    <li class="menu-item" routerLink="/home" [routerLinkActive]="'active'">{{locale?.home}}</li>
+    <li class="menu-item" routerLink="/catalog" [routerLinkActive]="'active'">{{locale?.catalog}}</li>
+  </ul>
+  <div class="search">
+    <label for="search"><img src="assets/icons/loupe.svg"></label>
+    <input type="text" id="search" placeholder="{{locale.searchPlaceHolder}}">
+  </div>
+
+  <div class="login">
+    <ng-container *ngIf="isAuthorized else unAuthorized">
+      <div class="login-bell">
+        <img src="/assets/icons/bell.svg" alt="alerts">
+      </div>
+      <div class="login-bookmarks">
+        <img src="/assets/icons/bookmarks.svg" alt="bookmarks">
+      </div>
+    </ng-container>
+    <ng-template #unAuthorized>
+      <!--  Unauthorized users-->
+      <div class="login-registration" routerLink="/authorization/registration">
+        {{locale.registration}}
+      </div>
+      <div class="login-sign_in" routerLink="/authorization/sign-in">
+        {{locale.signIn}}
+      </div>
+    </ng-template>
+    <div class="login-user" routerLink="/personal">
+      <img src="/assets/img/x-user-img.svg">
+    </div>
+  </div>
+
+
+</ng-container>

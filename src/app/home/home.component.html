@@ -1,0 +1,199 @@
+<com-header></com-header>
+<section class="wrapper">
+  <section class="screen">
+    <img src="assets/img/home/first-screen-background.svg" alt="Home page">
+    <div class="content">
+      <div class="screen-left">
+        <div class="screen-title">Каталог самых интересных и популярных ранобе!</div>
+        <div class="screen-description">Более 150 книг с регулярними обновлениями и совершенно бесбплатно!</div>
+        <div class="screen-btn" routerLink="/catalog">Смотреть каталог</div>
+      </div>
+      <div class="screen-right">
+        <div class="screen-slides" #slidesPictures>
+          <div class="slide-item">
+            <img src="assets/img/home/first-screen-book.svg" alt="books">
+          </div>
+          <div class="slide-item">
+            <img src="assets/img/home/first-screen-book.svg" alt="books">
+          </div>
+          <div class="slide-item">
+            <img src="assets/img/home/first-screen-book.svg" alt="books">
+          </div>
+        </div>
+        <div class="slides-btn">
+          <button
+            *ngFor="let card of slidePictures; let idx = index" [class.active]="activeSlide === idx"
+            (click)="sliding(idx)"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="novel">
+    <h1 hidden>Ранобе дня</h1>
+    <img src="assets/img/home/novel-background.svg" alt="novel-days" class="novel-img">
+    <section class="novel-card">
+      <h1 class="novel-title">Ранобе дня</h1>
+      <div class="novel-name">
+        <div class="name-content">
+          <div class="name-title">RE:ZERO. Жизнь с нулья в альтернативном мире.</div>
+          <div class="name-subtitle">Таппэй Нагацуки</div>
+        </div>
+      </div>
+      <div class="novel-archive">
+        <div class="archive-icon">
+          <img src="assets/icons/archive.svg" alt="archive_icon">
+        </div>
+        <div class="archive-text">Добавить в закладки</div>
+      </div>
+      <button class="archive-btn">Почитать</button>
+      <img src="assets/img/home/novel-img.svg" alt="novel card img">
+    </section>
+  </section>
+  <section class="hot">
+    <img src="assets/img/home/hot-background.svg" alt="hot books background">
+    <div class="content">
+      <header class="hot-genre">
+        <h2 class="genre-title">Обновления</h2>
+        <nav class="genre-types">
+          <ul>
+            <li>Фентези</li>
+            <li>Романтика</li>
+            <li>Сказки</li>
+            <li>Научная фантастика</li>
+            <li>Ужасы</li>
+            <li>...</li>
+          </ul>
+        </nav>
+      </header>
+      <section class="hot-books" #hotSlider>
+        <h1 hidden>Hot Books</h1>
+        <div class="hot-slider">
+          <com-book-card *ngFor="let book of booksData" [bookData]="book"></com-book-card>
+        </div>
+      </section>
+      <input class="hot-thumb" (input)="hotProgress($event)" type="range" min="0" max="100" value="0">
+    </div>
+  </section>
+  <section class="section">
+    <h1 hidden>books section</h1>
+    <img src="assets/img/home/section-background.svg" alt="books section background">
+    <div class="content">
+      <header class="section-title">Специально подобранные для вас</header>
+      <section class="section-case">
+        <section class="section-sliders" #sectionSlider>
+          <h2 hidden>section sliders</h2>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Завершенные</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Актывние</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ лучших</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ фентезийних</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ култииваторов</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ худших</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Завершенные</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Актывние</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ лучших</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ фентезийних</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ култииваторов</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ худших</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Завершенные</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Актывние</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ лучших</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ фентезийних</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ култииваторов</div>
+          </div>
+          <div class="section-slider">
+            <img src="assets/img/home/section-character-background.svg">
+            <div class="slider-title">Топ худших</div>
+          </div>
+        </section>
+        <input type="range" (input)="sectionProgress($event)" class="section-progress" min="0" value="0" max="100">
+      </section>
+    </div>
+  </section>
+  <section class="trigger">
+    <img src="assets/img/home/trigger-background.svg">
+    <div class="content">
+      <h2 class="trigger-title">О “Ранобелиб” в цыфрах</h2>
+      <div class="trigger-items">
+        <aside class="trigger-item">
+          <div class="trigger-card-1"></div>
+          <div class="trigger-card-2">
+            <div class="card-content">
+              <h1>109</h1>
+              <span>Книг в катологе</span>
+            </div>
+          </div>
+        </aside>
+        <aside class="trigger-item">
+          <div class="trigger-card-1"></div>
+          <div class="trigger-card-2">
+            <div class="card-content">
+              <h1>45</h1>
+              <span>Разнообразных жанров</span>
+            </div>
+          </div>
+        </aside>
+        <aside class="trigger-item">
+          <div class="trigger-card-1"></div>
+          <div class="trigger-card-2">
+            <div class="card-content">
+              <h1>46</h1>
+              <span>Завершенных книг</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+</section>
+<com-footer></com-footer>
+

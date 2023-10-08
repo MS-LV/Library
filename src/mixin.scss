@@ -1,0 +1,14 @@
+@mixin flex-easy-control($jc: flex-start, $ai:stretch) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+}
+
+@mixin flex-hard-control($jc: flex-start, $ai:stretch, $fd: row, $wr: nowrap) {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $fd;
+  flex-wrap: $wr;
+}
+

@@ -1,0 +1,96 @@
+@import "/src/mixin";
+@import "src/templates";
+
+:host {
+  display: inline-flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 257px;
+  height: 353.641px;
+  background: deepskyblue;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+
+  > img {
+    @extend .responsive-img;
+    object-position: top;
+    z-index: -1;
+  }
+
+  .window-img {
+    height: 54%;
+    z-index: 2;
+    border-radius: 16px 16px 14px 14px;
+    //transform: scale(1.5);
+  }
+}
+
+.book-title {
+  @include flex-easy-control(center, center);
+  position: absolute;
+  min-height: 29.736px;
+  top: 18px;
+  width: 90%;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 2;
+  color: #08EAF9;
+  text-align: center;
+  font-family: El Messiri, serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.book-background {
+  @include flex-hard-control(center, flex-end);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow: var(--box-shadow);
+}
+
+.book-infos {
+  @include flex-easy-control(space-between, center);
+  width: 80%;
+  padding-bottom: 40px;
+}
+
+.book-characters,
+.book-values {
+  color: #FFF;
+  font-family: El Messiri, serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 164.8%; /* 21.424px */
+}
+
+.book-values {
+  font-weight: 400;
+  flex: 0 1 50%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  > div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.book-icon {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  right: 17px;
+  cursor: pointer;
+}

@@ -1,0 +1,122 @@
+<com-header></com-header>
+<img src="assets/img/personal/background.svg" alt="personal background" class="background">
+<div class="wrapper">
+  <div class="content center">
+    <div class="conductor">
+      <div routerLink="/home">Главаная</div>
+      <div class="catalog-icon">&rightarrow;</div>
+      <div>Личный кабинет</div>
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-left">
+      <div class="left-card">
+        <div class="left-avatar">
+          <div class="left-icon">
+            <img src="assets/img/x-user-img.svg" alt="user image">
+          </div>
+          <div class="left-info">
+            <div class="left-name">TR Goul</div>
+            <div class="left-subtitle">Всегда оставайся тем кем на самом деле есть.</div>
+            <div class="left-level">Уровен 6</div>
+          </div>
+        </div>
+        <div class="left-buttons">
+          <div class="left-setting">Настройки</div>
+        </div>
+      </div>
+    </div>
+    <div class="profile-right">
+      <div class="right-settings">
+        <div *ngFor="let setting of settingsList"
+             [class.active]="setting == 'Списки'"
+             class="right-setting">{{setting}}</div>
+      </div>
+      <div class="right-slider">
+        <div class="slider-items" #bookSlider>
+          <div *ngFor="let slide of bookSlides" class="slider-item">
+            <img [src]="slide" alt="book">
+          </div>
+        </div>
+        <div class="slider-buttons">
+          <button *ngFor="let slide of bookSlides; let i = index"
+                  [class.active]="i === slideIndex"
+                  class="slider-btn" (click)="slideBook(i)"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section class="filter">
+    <h2 hidden>Filter section</h2>
+    <div class="content">
+      <div class="filter-left">
+        <div class="filter-characters">
+          <div *ngFor="let character of filterCharacter; let idx = index"
+               [class.active]="idx === characterIdx"
+               (click)="characterIdx = idx"
+               class="filter-character">
+            <div class="character-title">{{character.name}}</div>
+            <div class="character-much">{{character.much}}</div>
+          </div>
+        </div>
+        <div class="filter-editor">
+          <div class="editor-title">Редактировать вкладки</div>
+          <div class="editor-icon"><img src="assets/icons/pen.svg"></div>
+        </div>
+        <div class="filter-views">
+          <div class="view-title">Вид</div>
+          <div *ngFor="let view of filterViews; let idx = index"
+               (click)="viewIdx = idx"
+               [class.active]="viewIdx === idx"
+               class="filter-view">
+            <img [src]="view?.icon" [alt]="view?.icon">
+            <span class="view-text">{{view.name}}</span>
+          </div>
+        </div>
+        <div class="filter-filters">
+          <div class="filters-header">Сортировка</div>
+          <div class="filters-type">
+            <div class="filters-item">
+              <input type="radio" hidden name="filters-type" id="with-name" checked>
+              <label for="with-name"></label>
+              <label for="with-name" class="filters-title">Названию ( А - Я)</label>
+            </div>
+            <div class="filters-item">
+              <input type="radio" hidden name="filters-type" id="with-date">
+              <label for="with-date"></label>
+              <label for="with-date" class="filters-title">Дата обновления</label>
+            </div>
+            <div class="filters-item">
+              <input type="radio" hidden name="filters-type" id="with-read">
+              <label for="with-read"></label>
+              <label for="with-read" class="filters-title">Дата чтения</label>
+            </div>
+          </div>
+          <div class="filters-separates">
+            <div class="filters-item">
+              <input type="radio" hidden name="separates" id="with-increment" checked>
+              <label for="with-increment"></label>
+              <label for="with-increment" class="filters-title">По возрастанию</label>
+            </div>
+            <div class="filters-item">
+              <input type="radio" hidden name="separates" id="with-decrement">
+              <label for="with-decrement"></label>
+              <label for="with-decrement" class="filters-title">По убыванию</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="filter-right">
+        <header class="filter-header">
+          <input type="text" name="" id="">
+        </header>
+        <div class="filter-content">
+          <com-book-card *ngFor="let book of booksData"
+                         [bookData]="book"></com-book-card>
+        </div>
+        <com-pagination></com-pagination>
+      </div>
+    </div>
+  </section>
+</div>
+<com-footer></com-footer>

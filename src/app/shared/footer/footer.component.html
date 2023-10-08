@@ -1,0 +1,22 @@
+<ng-container *ngIf="locale | async as locale">
+  <img src="assets/img/footer/background.svg" class="background-image first">
+  <div class="content">
+    <div class="logo">
+      <img src="assets/img/logo.svg">
+    </div>
+    <div class="menu">
+      <div *ngFor="let title of locale.hotBookTypes" class="menu-item">{{title}}</div>
+    </div>
+
+    <div class="group">
+      <div class="group-item">{{locale.hotTitle}}</div>
+      <div class="group-item">Возрождение известного на всю поднебесную вора</div>
+      <div class="group-item">Легендарный лунный скульптор</div>
+      <div class="group-item">Божественный Меч Хаоса</div>
+      <div class="group-item">Воинственный Бог Асура</div>
+      <div class="group-item">Восставший против неба</div>
+    </div>
+    <div class="page-up" (click)="pageUp()">&uparrow;</div>
+  </div>
+
+</ng-container>

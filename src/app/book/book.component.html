@@ -1,0 +1,255 @@
+<com-header></com-header>
+<img src="assets/img/book/background.svg" class="b-background">
+<div class="wrapper">
+  <div class="content center">
+    <div class="conductor">
+      <div routerLink="/home">Главаная</div>
+      <div class="catalog-icon">&rightarrow;</div>
+      <div routerLink="/catalog">Каталог</div>
+      <div class="catalog-icon">&rightarrow;</div>
+      <div class="active">Ленивый хранител Подземелья</div>
+    </div>
+  </div>
+  <section class="first">
+    <div class="first-card">
+      <img src="assets/img/book/first-background.svg" alt="first card background" class="card-background">
+      <div class="first-title">Ленивый хранитель Подземелья</div>
+      <div class="first-left">
+        <div class="first-slider">
+          <div class="slider-items" #bookSlider>
+            <div *ngFor="let slide of bookSlides" class="slider-item">
+              <img [src]="slide" alt="book">
+            </div>
+          </div>
+          <div class="slider-btns">
+            <button *ngFor="let slide of bookSlides; let i = index" class="slider-btn" (click)="slideBook(i)"></button>
+          </div>
+        </div>
+        <button class="first-btn read">Начать читать</button>
+        <button class="first-btn add-list">Добавить в список
+          <svg width="14" height="11" fill="white">
+            <use xlink:href="#myArrow" x="0" y="0"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="first-right">
+        <div class="first-property author">
+          <div class="property-title">Автор:</div>
+          <div class="property-value">Onikage Supana</div>
+        </div>
+        <div class="first-property name">
+          <div class="property-title">Альтернативное название:</div>
+          <div class="property-value">Лени изволит предаваться хранитель подземелья — он совершенно не желает работать!
+            , Zettai ni Hatarakitakunai Dungeon Master ga Damin wo Musaboru made
+          </div>
+        </div>
+        <div class="first-property type">
+          <div class="property-title">Тип:</div>
+          <div class="property-value">Веб новелла</div>
+        </div>
+        <div class="first-property genre">
+          <div class="property-title"> Жанры:</div>
+          <div class="property-value">гарем, комедия, приключения, фэнтези</div>
+        </div>
+        <div class="first-property tags">
+          <div class="property-title"> Теги:</div>
+          <div class="property-value">Авантюристы, Гриндинг, Хитрый ГГ, Полулюди, Демоны, Эмоционально глуповатый ГГ,
+            Драконы, Мастер подземелий Год
+          </div>
+        </div>
+        <div class="first-property year">
+          <div class="property-title">Год выпуска:</div>
+          <div class="property-value">2015</div>
+        </div>
+        <div class="first-property published">
+          <div class="property-title">Опубликовано:</div>
+          <div class="property-value">10.01.2019</div>
+        </div>
+        <div class="first-property translate">
+          <div class="property-title">Статус перевода:</div>
+          <div class="property-value">Переводиться</div>
+        </div>
+        <div class="first-property status">
+          <div class="property-title">Статус тайтла:</div>
+          <div class="property-value">Продолжается</div>
+        </div>
+        <div class="first-property country">
+          <div class="property-title">Страна:</div>
+          <div class="property-value">Япония</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="description">
+    <img src="assets/img/book/description-background.svg" alt="description background" class="description-background">
+    <h1 hidden>Description Book</h1>
+    <section class="description-card">
+      <img class="description-img" src="assets/img/book/description-img.svg" alt="description image">
+      <h2 class="description-title">Описание</h2>
+      <div class="description-text">
+        «Лень-двигатель прогресса». Эту нехитрую мудрость знает каждый уважающий себя лентяй. И еще много других
+        мудростей: про воду и камень, лес и волков. А иначе как отбиваться от наседающих на него излишне деятельных
+        собратьев. Новички в древнем искусстве лениться, будут просто лежать и пускать пузырики из слюны. Но настоящие
+        профессионалы горы свернут, чтобы их оставили в покое. Как говорит ГГ этой ранобе: «к хорошему отдыху надо
+        тщательно подготовиться.»
+      </div>
+    </section>
+  </section>
+  <section class="chapter">
+    <h2 hidden>Chapter</h2>
+    <header class="chapter-header">
+      <img src="assets/img/book/chapter-background.svg" alt="book chapters background">
+      <div class="content center">
+        <h2 class="chapter-header-title">Ишите удобно ту главу на которой остановились и читайте в удоволствие!</h2>
+        <input type="text" class="chapter-search" placeholder="Поиск по названию главы">
+      </div>
+    </header>
+    <section class="chapter-content">
+      <h2 hidden>book chapters</h2>
+      <div class="content center">
+        <div class="chapter-chapters">
+          <div *ngFor="let chapter of bookChapters; let i = index" class="chapter-item">
+            <span>Глава {{i + 1}}.</span>
+            <span>{{chapter}}</span>
+          </div>
+        </div>
+        <com-pagination></com-pagination>
+      </div>
+    </section>
+  </section>
+  <section class="comment">
+    <h2 hidden>Books Comment</h2>
+    <div class="content center">
+      <div class="comment-title">Выразите мысли коментарием!</div>
+      <div class="comment-subtitle">Коментариев 25</div>
+      <div class="comment-buttons">
+        <button class="comment-btn">Популярные</button>
+        <button class="comment-btn active">Новые</button>
+        <button class="comment-btn">Оффтоп</button>
+        <button class="comment-btn">Все</button>
+      </div>
+      <div class="comment-area">
+        <div class="comment-card">
+          <header class="comment-header">
+            <div class="comment-favicon">
+              <img src="assets/img/x-user-img.svg" alt="user logo">
+            </div>
+            <div class="comment-info">
+              <div class="comment-username">TR Goul</div>
+              <div class="comment-date">Сегодня, 02:06</div>
+              <div class="comment-type">Оффтоп</div>
+              <div class="comment-score">
+                <div class="comment-increment">&#10010;</div>
+                <div class="comment-positive">0</div>
+                <div class="comment-separator"></div>
+                <div class="comment-negative">0</div>
+                <div class="comment-decrement">&#9866;</div>
+              </div>
+            </div>
+          </header>
+          <pre class="comment-content">
+            Первые 10 глав были хороши. Вторые десять читал с минимальным интересом. Потом все превратилось в конченый гарем с самыми отбитыми поворотами. Читать не советую ни в коем случае
+          </pre>
+          <div class="comment-subbuttons">
+            <button><span>&#10132;</span> Ответит</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><span class="comment-icon">&#9868;</span> Цитировать</button>
+          </div>
+        </div>
+        <div class="comment-card">
+          <header class="comment-header">
+            <div class="comment-favicon">
+              <img src="assets/img/x-user-img.svg" alt="user logo">
+            </div>
+            <div class="comment-info">
+              <div class="comment-username">Li Girl</div>
+              <div class="comment-date">Сегодня, 12:28</div>
+              <div class="comment-type">Оффтоп</div>
+              <div class="comment-score">
+                <div class="comment-increment">&#10010;</div>
+                <div class="comment-positive">0</div>
+                <div class="comment-separator"></div>
+                <div class="comment-negative">0</div>
+                <div class="comment-decrement">&#9866;</div>
+              </div>
+            </div>
+          </header>
+          <pre class="comment-content">
+            Ух,сначала слушал аудиокнигу года 2 назад(голосом робота,скажу вам это занятие неблагодарное и неприятное,аж кровь из ушей хлестала),так о чём,ах точно,вот сегодня напоролся на этом сайте на это ШИКАРНОЕ произведение и решил с самого начала прочитать.
+
+ТЕПЕРЬ К ДЕЛУ:
+Если коротко книга очень хорошая,но зайдёт не всем,!!!!!(БЕЗ СПОЙДЕРОВ)!!!тут будет расказываться о похождениях русского парня извращенеца,описываются эротические сцены подробно,есть чёрный юмор,глубокий и захватывающий сюжет и море крови,кишок и... Когда прчтёте сами поймёте, ГОДНО РЕКОМЕНДУЮ!!!
+          </pre>
+          <div class="comment-subbuttons">
+            <button><span>&#10132;</span> Ответит</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><span class="comment-icon">&#9868;</span> Цитировать</button>
+          </div>
+        </div>
+        <div class="comment-card">
+          <header class="comment-header">
+            <div class="comment-favicon">
+              <img src="assets/img/x-user-img.svg" alt="user logo">
+            </div>
+            <div class="comment-info">
+              <div class="comment-username">Курасаки</div>
+              <div class="comment-date">Сегодня, 02:06</div>
+              <div class="comment-type">Оффтоп</div>
+              <div class="comment-score">
+                <div class="comment-increment">&#10010;</div>
+                <div class="comment-positive">0</div>
+                <div class="comment-separator"></div>
+                <div class="comment-negative">0</div>
+                <div class="comment-decrement">&#9866;</div>
+              </div>
+            </div>
+          </header>
+          <pre class="comment-content">
+            Всего должно быть в меру. К примеру, когда вокруг гг бегают полуголые девицы, а гг строит из себя недотрогу, то читать это неприятно, так как читатель не понимает почему гг себя ведёт как идиот. Тоже самое касается гг, которые идут напролом, игнорируя любую логику.(Читатели Асуры после 1к глав сейчас прослезились).
+
+Да, должно быть, только ты забыл одно правило: фантазия автораф и логика(ну допустим, законы физики) не-сов-мес-ти-мы-е вещи, так что этого надо ждать, либо как-то готовиться.
+
+(Читатели Асуры после 1к глав сейчас прослезились).
+
+Ну а как не прослезиться, после предыдущих слов. Может кто и осудит, но можно было ещё и пролить слёзы от смеха. По крайней мере частично
+
+Я вообще к чему это начал то, суть в том, что даже треша и абсурда должно быть в меру, ведь когда гг ломает клише- это круто, но когда сам процесс поломки становится клишированным это .. странно что - ли ...
+
+Верно, да не всегда действует. Опять же приведу пример но не из романов, а игр. Возьмём ту же Брутал ледженд. Играть можно, жесть и расчленёнка вроде тоже присутствуют, и т.д. Но надолго, как по мне(именно по мне) её наврядли хватит. Святые с третьей улицы(вроде такое название у знаменитой серии игр-конкурента гта), там расчленёнки и такой жести нет, но наркомания та ещё. И по чисто моему субективному(и наверное нкчёмному как многие подумают) мнению она может хватить, если не надолго, то на несколько месяцев ну или хотя бы недель... Задания тоже имеются... Ух, ладно, перейду дальше...
+
+Данная новелла это тот редкий случай, когда "настолько много", что начинаешь скучать по китайским культиваторам, которые ради секса должны сотню-другую лет культивировать.
+
+Мммм, чтобы тут ответить?.. Ах, да, тоже верно, хотя могут быть и исключения или не совсем. Если у главного действующего лица будет заранее иметься власть, влияние, могущество, будут слуги или наемники. В зависимости от того какой будет авторский произвол(а может и не произвол)
+
+Плохая ли это книга? Да нет, вполне читаема. Просто на мой взгляд автор так хотел сделать что-то необычное, что ничего необычного не осталось. Судите сами, когда в книге, где гг никого не убивал тысячу глав происходит какой-нибудь геноцид - это шокирует и удивляет, но когда вся книга сплошной геноцид - это воспринимается как обыденность.
+
+С этим (частично или нет) соглы, у автора не хватило воображения и муза, видать, покинула его. Тут не буду использовать примеры из игровой индустрии, сил не хватит
+
+Уже спустя десяток другой глав происходящее начинает не то что приедаться, а скорее игнорироваться. Новые персонажи запоминаются, но нисколько не привлекают, так как ты, как читатель, уже готов к тому, что с ними произойдёт какой-нибудь п***ец. И так во всём. Абсурдные ситуации больше не вызывают улыбки, ведь вся книга - парад абсурда.
+
+Не лишено смысла, но без абсурда, порой, тоже ничего не седлать...
+
+Если ваш девиз по жизни - "Какого х_уя?!" - строго рекомендую к прочтению, однако если вам нравится сюжет, где есть антигерои/жестокие герои, читать это не советую. Здесь слишком много треша и слишком мало сюжета. Опять же, это не плохо, это на любителя.
+
+Тоже самое: полуправда.
+
+Фух! Ну вооооот и всё.
+          </pre>
+          <div class="comment-subbuttons">
+            <button><span>&#10132;</span> Ответит</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><span class="comment-icon">&#9868;</span> Цитировать</button>
+          </div>
+        </div>
+      </div>
+      <com-pagination></com-pagination>
+    </div>
+  </section>
+</div>
+<com-footer></com-footer>
+
+
+<svg display="none" width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="myArrow"
+        d="M10.2113 5.07078L4.42611 0.17573C4.2923 0.0624223 4.11369 0 3.92323 0C3.73278 0 3.55416 0.0624223 3.42036 0.17573L2.99432 0.536134C2.7171 0.770977 2.7171 1.15267 2.99432 1.38715L7.85227 5.49772L2.98893 9.61285C2.85513 9.72616 2.78125 9.8772 2.78125 10.0383C2.78125 10.1995 2.85513 10.3506 2.98893 10.464L3.41497 10.8243C3.54888 10.9376 3.72739 11 3.91784 11C4.1083 11 4.28691 10.9376 4.42072 10.8243L10.2113 5.92475C10.3454 5.81108 10.4191 5.65932 10.4186 5.49799C10.4191 5.33603 10.3454 5.18436 10.2113 5.07078Z"/>
+</svg>

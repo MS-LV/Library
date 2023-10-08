@@ -1,0 +1,24 @@
+@import "mixin";
+
+.btn-gradient {
+  @include flex-easy-control(center, center);
+  color: #fff;
+  border-radius: 6px;
+  background: linear-gradient(275deg, rgba(235, 41, 111, 0.94) -33.4%, rgba(238, 55, 55, 0.94) 139.63%);
+  box-shadow: -2px 3px 18px 0 rgba(237, 51, 74, 0.47);
+  cursor: pointer;
+}
+
+.content {
+  width: var(--content-width);
+  max-width: var(--max-content-width);
+}
+
+.responsive-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

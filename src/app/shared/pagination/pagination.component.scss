@@ -1,0 +1,36 @@
+@import "/src/mixin";
+:host {
+  min-height: 40px;
+  max-width: 490px;
+  width: fit-content;
+  display: block;
+
+  > * + * {
+    margin-left: 15px;
+  }
+}
+.pagination-item {
+  @include flex-easy-control(center, center);
+  transition: 0.3s;
+  display: inline-flex;
+  width: 35px;
+  height: 35px;
+  border-radius: 9px;
+  background: rgba(18, 131, 236, 0.08);
+  color: var(--title-text-color);
+  font-family: Marmelad, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 184.5%; /* 27.675px */
+  cursor: pointer;
+  user-select: none;
+
+  &.active {
+    transform: scale(1.1, 1.1);
+    background: rgba(235, 74, 116, 0.95);
+    color: #FFF;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 184.5%; /* 33.21px */
+  }
+}

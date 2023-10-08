@@ -1,0 +1,169 @@
+<com-header></com-header>
+<img class="c-background" src="assets/img/catalog/background.svg">
+<main class="wrapper">
+  <section class="c-title">
+    <h1 hidden>catalog title</h1>
+    <div>Филтруй книги как душе угодна!</div>
+    <div>Каталог для любых случаев.</div>
+  </section>
+  <div class="content">
+    <section class="search">
+      <h1 hidden>search books</h1>
+      <div class="search-title">
+        <div class="search-conductor">
+          <div routerLink="/home">Главаная</div>
+          <div class="catalog-icon">&rightarrow;</div>
+          <div class="active" routerLink="/catalog">Каталог</div>
+        </div>
+        <div class="search-type">
+          <img class="type-icon" src="assets/icons/setting.svg" alt="setting icon">
+          <div class="type-text">По рейтингу</div>
+        </div>
+      </div>
+      <input type="text" class="search-area" placeholder="Поиск по названию">
+    </section>
+
+    <section class="filter">
+      <h1 hidden>Filter Books</h1>
+      <aside class="filter-settings">
+        <h1 hidden>filter settings</h1>
+        <div class="settings-block select">
+          <div class="setting-genre">
+            <div class="genres-title">Жанры</div>
+            <select>
+              <option value="любые">любые</option>
+              <option *ngFor="let option of filter?.genres" [value]="option" [innerHTML]="option"></option>
+            </select>
+            <img src="assets/icons/right-arrow.svg" alt="right arrow svg">
+          </div>
+          <div class="setting-authors">
+            <div class="authors-title">Авторы</div>
+            <select>
+              <option value="любые">любые</option>
+              <option *ngFor="let option of filter?.authors" [value]="option" [innerHTML]="option"></option>
+            </select>
+            <img src="assets/icons/right-arrow.svg" alt="right arrow svg">
+          </div>
+          <div class="setting-tags">
+            <div class="tags-title">Теги</div>
+            <select>
+              <option value="любые">любые</option>
+              <option *ngFor="let option of filter?.tags" [value]="option" [innerHTML]="option"></option>
+            </select>
+            <img src="assets/icons/right-arrow.svg" alt="right arrow svg">
+          </div>
+          <div class="settings-collections">
+            <div class="collections-title">Подборки</div>
+            <select>
+              <option value="любые">любые</option>
+              <option *ngFor="let option of filter?.collections" [value]="option" [innerHTML]="option"></option>
+            </select>
+            <img src="assets/icons/right-arrow.svg" alt="right arrow svg">
+          </div>
+        </div>
+        <div class="settings-block period">
+          <div class="settings-release">
+            <div class="release-title">Год випуска</div>
+            <div class="release-area">
+              <input type="number" class="release-from" placeholder="От">
+              <input type="number" class="release-to" placeholder="До">
+            </div>
+          </div>
+        </div>
+        <div class="settings-block period">
+          <div class="settings-score">
+            <div class="score-title">Оценка</div>
+            <div class="score-area">
+              <input type="number" class="score-from" placeholder="От">
+              <input type="number" class="score-to" placeholder="До">
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="setting-ages">
+            <div class="ages-title">Возрастной рейтинг</div>
+            <div class="ages-area">
+              <div class="area-age" *ngFor="let age of filter?.ages">
+                <input [id]="age" type="checkbox" hidden>
+                <label [for]="age"></label>
+                <label [for]="age" class="area-description" [innerHTML]="age"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="settings-countries">
+            <div class="countries-title">Страна</div>
+            <div class="countries-area">
+              <div class="area-country" *ngFor="let country of filter?.countries">
+                <input [id]="country" type="checkbox" hidden>
+                <label [for]="country"></label>
+                <label [for]="country" class="area-description" [innerHTML]="country"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="setting-types">
+            <div class="types-title">Тип</div>
+            <div class="types-area">
+              <div class="area-type" *ngFor="let type of filter?.type">
+                <input [id]="type" type="checkbox" hidden>
+                <label [for]="type"></label>
+                <label [for]="type" class="area-description" [innerHTML]="type"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="setting-translate">
+            <div class="translate-title">Статус перевода</div>
+            <div class="translate-area">
+              <div class="area-translate" *ngFor="let type of filter?.isTranslate">
+                <input [id]="type" type="checkbox" hidden>
+                <label [for]="type"></label>
+                <label [for]="type" class="area-description" [innerHTML]="type"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="setting-status">
+            <div class="status-title">Статус тайтла</div>
+            <div class="status-area">
+              <div class="area-status" *ngFor="let status of filter?.statusBook">
+                <input [id]="status" type="checkbox" hidden>
+                <label [for]="status"></label>
+                <label [for]="status" class="area-description" [innerHTML]="status"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-block checkbox">
+          <div class="setting-events">
+            <div class="events-title">Мои списки</div>
+            <div class="events-area">
+              <div class="area-events" *ngFor="let events of filter?.events">
+                <input [id]="events" type="checkbox" hidden>
+                <label [for]="events"></label>
+                <label [for]="events" class="area-description" [innerHTML]="events"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-buttons">
+          <button type="submit">Показат</button>
+          <button type="reset">Сбросить</button>
+        </div>
+      </aside>
+      <section class="filter-items">
+        <h1 hidden>Filtered items</h1>
+        <com-book-card *ngFor="let book of booksData"
+                       routerLink="srdsfsdfsd"
+                       [bookData]="book"></com-book-card>
+      </section>
+
+    </section>
+  </div>
+</main>
+<com-footer></com-footer>

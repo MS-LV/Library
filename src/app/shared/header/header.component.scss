@@ -1,0 +1,118 @@
+@import "/src/mixin";
+@import "templates";
+
+:host {
+  @include flex-easy-control(space-between, center);
+  @extend .content;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  margin: calc(var(--header-height) / 4) auto 0;
+  height: var(--header-height);
+  font-family: Marmelad, serif;
+  color: var(--title-text-color);
+  font-size: 14px;
+  z-index: 1;
+
+}
+
+.menu {
+  @include flex-easy-control(flex-start, center);
+  flex: 0 1 263px;
+  column-gap: 50px;
+}
+
+.menu-item {
+  position: relative;
+  line-height: 97.8%; /* 13.692px */
+  cursor: pointer;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1px;
+    border-radius: 2px;
+    background: rgba(236, 52, 100, 0.45);
+    transition: 0.3s;
+  }
+
+  &.active,
+  &:hover {
+    color: #EC3464;
+    transition: 0.3s;
+
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+.search {
+  @include flex-easy-control(space-between);
+  position: relative;
+  flex: 0 1 200px;
+  height: 29px;
+  border-radius: 4px;
+  background: rgba(229, 229, 229, 0.37);
+
+  input {
+    flex: 1 1 auto;
+    background-color: transparent;
+    padding-left: 5px;
+  }
+
+  label {
+    @include flex-easy-control(center, center);
+    min-width: 20px;
+    padding: 10px;
+
+    img {
+      width: 13px;
+      height: 13px;
+    }
+  }
+}
+
+
+.login {
+  @include flex-easy-control(flex-start, center);
+  column-gap: 28px;
+
+  > div {
+    color: var(--title-text-color);
+    cursor: pointer;
+    line-height: 97.8%; /* 13.692px */
+  }
+}
+
+.login-registration,
+.login-sign_in {
+  @include flex-easy-control(center, center);
+  height: 42px;
+  border-radius: 5px;
+  border: 1px solid rgba(236, 52, 101, 0.20);
+  font-family: "El Messiri", serif;
+  font-weight: bold;
+}
+
+.login-registration {
+  width: 135px;
+}
+
+.login-sign_in {
+  width: 113px;
+}
+
+.login-user {
+  width: 50px;
+  height: 50px;
+  @include flex-easy-control(center, center);
+
+  img {
+    border-radius: 12px;
+  }
+}

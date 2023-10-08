@@ -1,0 +1,4 @@
+<div *ngFor="let pagination of Array(10).fill(0); let i = index"
+     (click)="activePagination = i"
+     [class.active]="i === activePagination"
+     class="pagination-item">{{i + 1}}</div>

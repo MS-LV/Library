@@ -1,0 +1,42 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./fonts";
+@import './mixin';
+@import "./variable";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+input:not([type=checkbox]):focus {
+  border: 1px solid rgba(237, 83, 83, 0.60);
+}
+
+img {
+  user-select: none;
+}
+
+*[routerLink] {
+  cursor: pointer;
+}
+
+button {
+  border: none;
+  outline: none;
+}
