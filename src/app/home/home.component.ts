@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {interval, Subscription} from "rxjs";
-import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak";
+import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
 import {HomeService} from "./home.service";
 import {IBookData} from "../shared/book-card/book-card.interface";
 

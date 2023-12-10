@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak";
+import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak.util";
 import {Observable} from "rxjs";
-import {IFooterLocale} from "./footer.interface";
 import {FooterService} from "./footer.service";
 import {CommonModule} from "@angular/common";
+import {IFooterLocale} from "../locale.interface";
 
 @CleanSubscriptionsAndMemoryLeaks()
 @Component({

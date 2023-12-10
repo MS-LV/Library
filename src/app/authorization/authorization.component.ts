@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak";
+import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
 @CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'app-authorization',

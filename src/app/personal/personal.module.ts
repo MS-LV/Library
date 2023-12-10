@@ -7,11 +7,12 @@ import {BookCardComponent} from "../shared/book-card/book-card.component";
 import {FooterComponent} from "../shared/footer/footer.component";
 import {HeaderComponent} from "../shared/header/header.component";
 import {PaginationComponent} from "../shared/pagination/pagination.component";
+import {AuthGuard} from "../shared/guards/auth.guard";
 
 
 const routes: Routes = [
   {
-    path: '', component: PersonalComponent
+    path: '', component: PersonalComponent, canActivate: [AuthGuard]
   }
 ]
 

@@ -1,0 +1,55 @@
+:root {
+  //----------- my-variable ---------
+  --default-transition: all .3s ease;
+
+  --sidebar-width: 16rem;
+  --dark: #636f83;
+  --side-brand-height: 4rem;
+  --sidebar-bg: #3c4b64;
+  --sidebar-padding-x: 0;
+  --sidebar-padding-y: 0;
+  --sidebar-color: rgba(255, 255, 255, .87);
+  --sidebar-border-width: 0;
+  --sidebar-border-color: transparent;
+  --sidebar-brand-color: rgba(255, 255, 255, .87);
+  --sidebar-brand-height: 4rem;
+  --sidebar-brand-bg: rgba(0, 0, 21, .15);
+  --sidebar-close-button-width: 2rem;
+  --sidebar-close-button-height: 4rem;
+  --sidebar-header-height: 4rem;
+  --sidebar-header-bg: rgba(0, 0, 21, .2);
+  --sidebar-header-padding-x: 1rem;
+  --sidebar-header-padding-y: .75rem;
+  --sidebar-footer-bg: rgba(0, 0, 21, .2);
+  --sidebar-footer-height: auto;
+  --sidebar-footer-padding-x: 1rem;
+  --sidebar-footer-padding-y: .75rem;
+  --sidebar-toggler-bg: rgba(0, 0, 21, .2);
+  --sidebar-toggler-height: 3rem;
+  --sidebar-toggler-indicator-width: 4rem;
+  --sidebar-toggler-indicator-height: 3rem;
+  --sidebar-toggler-hover-bg: rgba(0, 0, 0, .3);
+  --sidebar-narrow-width: 4rem;
+  --sidebar-nav-title-padding-x: 1rem;
+  --sidebar-nav-title-padding-y: .75rem;
+  --sidebar-nav-title-margin-top: 1rem;
+  --sidebar-nav-title-color: rgba(255, 255, 255, .6);
+  --sidebar-nav-link-padding-x: 1.5rem;
+  --sidebar-nav-link-padding-y: .75rem;
+  --sidebar-nav-link-color: rgba(255, 255, 255, .6);
+  --sidebar-nav-link-bg: transparent;
+  --sidebar-nav-link-border-color: transparent;
+  --sidebar-nav-link-border: 0 solid var(--cui-sidebar-nav-link-border-color);
+  --sidebar-nav-link-border-radius: 0;
+  --sidebar-nav-link-active-color: rgba(255, 255, 255, .87);
+  --sidebar-nav-link-active-bg: rgba(0, 0, 21, .05);
+  --sidebar-nav-link-active-icon-color: rgba(255, 255, 255, .87);
+  --sidebar-nav-link-disabled-color: rgba(255, 255, 255, .38);
+  --sidebar-nav-link-disabled-icon-color: rgba(255, 255, 255, .6);
+  --sidebar-nav-link-hover-color: rgba(255, 255, 255, .87);
+  --sidebar-nav-link-hover-bg: rgba(0, 0, 21, .05);
+  --sidebar-nav-link-hover-icon-color: rgba(255, 255, 255, .87);
+  --sidebar-nav-icon-width: 4rem;
+  --sidebar-nav-icon-height: 1.25rem;
+  --sidebar-nav-icon-font-size: 1.25rem;
+}

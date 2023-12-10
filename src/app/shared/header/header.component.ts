@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak";
+import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak.util";
 import {ConfigsService} from "../services/configs.service";
-import {IHeaderLocale} from "./header.interface";
 import {Observable} from "rxjs";
 import {HeaderService} from "./header.service";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
+import {IHeaderLocale} from "../locale.interface";
 
 @CleanSubscriptionsAndMemoryLeaks()
 @Component({

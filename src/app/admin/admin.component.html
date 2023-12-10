@@ -1,8 +1,11 @@
-<mat-toolbar color="primary">
-  <span>Ranobelib</span>
-  <span class="example-spacer"></span>
-  <a mat-list-item>
-    <span>users</span>
-    <mat-icon>group</mat-icon>
-  </a>
-</mat-toolbar>
+<div class="wrapper-admin"
+     [class.menu-hidden]="isOpenMenu"
+     [class.max-width]="isMaxWidth">
+  <com-admin-aside (valueChange)="asideChange($event)"></com-admin-aside>
+  <div class="admin-content">
+    <com-admin-header (valueChange)="headerChange($event)"></com-admin-header>
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<router-outlet name="authorization"></router-outlet>

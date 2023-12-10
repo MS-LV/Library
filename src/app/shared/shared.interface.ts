@@ -7,4 +7,10 @@ export interface ISharedConstants {
 
 export interface IUpConfigs {
   locale: string;
+  serverHost: string;
+}
+
+export interface IBookCharacters {
+  name: string;
+  title: string;
 }

@@ -7,6 +7,9 @@
   background: linear-gradient(275deg, rgba(235, 41, 111, 0.94) -33.4%, rgba(238, 55, 55, 0.94) 139.63%);
   box-shadow: -2px 3px 18px 0 rgba(237, 51, 74, 0.47);
   cursor: pointer;
+  &[disabled] {
+    background: darkgray;
+  }
 }
 
 .content {

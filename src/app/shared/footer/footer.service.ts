@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable, shareReplay, take} from "rxjs";
-import {IFooterLocale} from "./footer.interface";
+import {Observable, take} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {localePath} from "../../utils/locale";
+import {localePath} from "../../utils/locale.util";
 import {footerFileName} from "../shared.contants";
+import {IFooterLocale} from "../locale.interface";
 
 @Injectable()
 export class FooterService {

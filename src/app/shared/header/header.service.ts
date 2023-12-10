@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable, shareReplay, take} from "rxjs";
-import {IHeaderLocale} from "./header.interface";
-import {localePath} from "../../utils/locale";
+import {Observable, take} from "rxjs";
+import {localePath} from "../../utils/locale.util";
 import {headerFileName} from "../shared.contants";
+import {IHeaderLocale} from "../locale.interface";
 
 @Injectable()
 export class HeaderService {
