@@ -332,5 +332,6 @@
 
 .filter-items {
   @include flex-hard-control(space-between, flex-start, row, wrap);
-  row-gap: 60px;
+  flex: 1 1 auto;
+  gap: 60px 10px;
 }

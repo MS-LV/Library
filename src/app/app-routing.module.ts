@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthGuard} from "./shared/guards/auth.guard";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -25,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'catalog/:id',
-    loadChildren: () => import('./book/book.module').then(m => m.BookModule)
+    loadChildren: () => import('./book/book.module').then(m => m.BookModule),
   }
 ];
 
@@ -34,7 +35,8 @@ const routes: Routes = [
     useHash: true,
     scrollPositionRestoration: 'top',
     anchorScrolling: 'enabled',
-    initialNavigation: 'enabledBlocking'
+    initialNavigation: 'enabledBlocking',
+    // onSameUrlNavigation: 'reload'
   })],
   exports: [RouterModule]
 })

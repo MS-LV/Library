@@ -11,7 +11,7 @@ import {AdminService} from "./admin.service";
 import {AuthAdminGuard} from "./guards/auth-admin.guard";
 import {LoginService} from "./pages/login/login.service";
 import {AboutComponent} from './pages/about/about.component';
-import {BOOK_CONFIG, BOOK_CONFIG_TOKEN} from "./pages/add-book/configs";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
   {
@@ -26,6 +26,11 @@ const routes: Routes = [
         path: 'add-book',
         canActivate: [AuthAdminGuard],
         loadComponent: () => import('./pages/add-book/add-book.component').then(m => m.AddBookComponent)
+      },
+      {
+        path: 'books',
+        canActivate: [AuthAdminGuard],
+        loadComponent: () => import('./pages/books/books.component').then(m => m.BooksComponent)
       },
       {
         path: 'users',
@@ -50,7 +55,7 @@ const routes: Routes = [
   declarations: [
     RegistrComponent,
     LoginComponent,
-    AboutComponent
+    AboutComponent,
   ],
   exports: [],
   imports: [
@@ -58,14 +63,14 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     AdminSharedModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
   providers: [
     AdminService,
     RegistrService,
     AuthAdminGuard,
     LoginService,
-    {provide: BOOK_CONFIG_TOKEN, useValue: BOOK_CONFIG},
   ]
 })
 export class AdminModule {

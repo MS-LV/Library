@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SignInService} from "./sign-in.service";
+import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak.util";
 
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',

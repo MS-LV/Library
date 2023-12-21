@@ -1,122 +1,7 @@
 <com-header></com-header>
 <img src="assets/img/book/background.svg" class="b-background">
 <div class="wrapper">
-  <div class="content center">
-    <div class="conductor">
-      <div routerLink="/home">Главаная</div>
-      <div class="catalog-icon">&rightarrow;</div>
-      <div routerLink="/catalog">Каталог</div>
-      <div class="catalog-icon">&rightarrow;</div>
-      <div class="active">Ленивый хранител Подземелья</div>
-    </div>
-  </div>
-  <section class="first">
-    <div class="first-card">
-      <img src="assets/img/book/first-background.svg" alt="first card background" class="card-background">
-      <div class="first-title">Ленивый хранитель Подземелья</div>
-      <div class="first-left">
-        <div class="first-slider">
-          <div class="slider-items" #bookSlider>
-            <div *ngFor="let slide of bookSlides" class="slider-item">
-              <img [src]="slide" alt="book">
-            </div>
-          </div>
-          <div class="slider-btns">
-            <button *ngFor="let slide of bookSlides; let i = index" class="slider-btn" (click)="slideBook(i)"></button>
-          </div>
-        </div>
-        <button class="first-btn read">Начать читать</button>
-        <button class="first-btn add-list">Добавить в список
-          <svg width="14" height="11" fill="white">
-            <use xlink:href="#myArrow" x="0" y="0"></use>
-          </svg>
-        </button>
-      </div>
-      <div class="first-right">
-        <div class="first-property author">
-          <div class="property-title">Автор:</div>
-          <div class="property-value">Onikage Supana</div>
-        </div>
-        <div class="first-property name">
-          <div class="property-title">Альтернативное название:</div>
-          <div class="property-value">Лени изволит предаваться хранитель подземелья — он совершенно не желает работать!
-            , Zettai ni Hatarakitakunai Dungeon Master ga Damin wo Musaboru made
-          </div>
-        </div>
-        <div class="first-property type">
-          <div class="property-title">Тип:</div>
-          <div class="property-value">Веб новелла</div>
-        </div>
-        <div class="first-property genre">
-          <div class="property-title"> Жанры:</div>
-          <div class="property-value">гарем, комедия, приключения, фэнтези</div>
-        </div>
-        <div class="first-property tags">
-          <div class="property-title"> Теги:</div>
-          <div class="property-value">Авантюристы, Гриндинг, Хитрый ГГ, Полулюди, Демоны, Эмоционально глуповатый ГГ,
-            Драконы, Мастер подземелий Год
-          </div>
-        </div>
-        <div class="first-property year">
-          <div class="property-title">Год выпуска:</div>
-          <div class="property-value">2015</div>
-        </div>
-        <div class="first-property published">
-          <div class="property-title">Опубликовано:</div>
-          <div class="property-value">10.01.2019</div>
-        </div>
-        <div class="first-property translate">
-          <div class="property-title">Статус перевода:</div>
-          <div class="property-value">Переводиться</div>
-        </div>
-        <div class="first-property status">
-          <div class="property-title">Статус тайтла:</div>
-          <div class="property-value">Продолжается</div>
-        </div>
-        <div class="first-property country">
-          <div class="property-title">Страна:</div>
-          <div class="property-value">Япония</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="description">
-    <img src="assets/img/book/description-background.svg" alt="description background" class="description-background">
-    <h1 hidden>Description Book</h1>
-    <section class="description-card">
-      <img class="description-img" src="assets/img/book/description-img.svg" alt="description image">
-      <h2 class="description-title">Описание</h2>
-      <div class="description-text">
-        «Лень-двигатель прогресса». Эту нехитрую мудрость знает каждый уважающий себя лентяй. И еще много других
-        мудростей: про воду и камень, лес и волков. А иначе как отбиваться от наседающих на него излишне деятельных
-        собратьев. Новички в древнем искусстве лениться, будут просто лежать и пускать пузырики из слюны. Но настоящие
-        профессионалы горы свернут, чтобы их оставили в покое. Как говорит ГГ этой ранобе: «к хорошему отдыху надо
-        тщательно подготовиться.»
-      </div>
-    </section>
-  </section>
-  <section class="chapter">
-    <h2 hidden>Chapter</h2>
-    <header class="chapter-header">
-      <img src="assets/img/book/chapter-background.svg" alt="book chapters background">
-      <div class="content center">
-        <h2 class="chapter-header-title">Ишите удобно ту главу на которой остановились и читайте в удоволствие!</h2>
-        <input type="text" class="chapter-search" placeholder="Поиск по названию главы">
-      </div>
-    </header>
-    <section class="chapter-content">
-      <h2 hidden>book chapters</h2>
-      <div class="content center">
-        <div class="chapter-chapters">
-          <div *ngFor="let chapter of bookChapters; let i = index" class="chapter-item">
-            <span>Глава {{i + 1}}.</span>
-            <span>{{chapter}}</span>
-          </div>
-        </div>
-        <com-pagination></com-pagination>
-      </div>
-    </section>
-  </section>
+<router-outlet></router-outlet>
   <section class="comment">
     <h2 hidden>Books Comment</h2>
     <div class="content center">
@@ -152,7 +37,8 @@
           </pre>
           <div class="comment-subbuttons">
             <button><span>&#10132;</span> Ответит</button>
-            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба
+            </button>
             <button><span class="comment-icon">&#9868;</span> Цитировать</button>
           </div>
         </div>
@@ -182,7 +68,8 @@
           </pre>
           <div class="comment-subbuttons">
             <button><span>&#10132;</span> Ответит</button>
-            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба
+            </button>
             <button><span class="comment-icon">&#9868;</span> Цитировать</button>
           </div>
         </div>
@@ -237,7 +124,8 @@
           </pre>
           <div class="comment-subbuttons">
             <button><span>&#10132;</span> Ответит</button>
-            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба</button>
+            <button><img src="assets/icons/complaint.svg" class="comment-icon" alt="complaint">Жалоба
+            </button>
             <button><span class="comment-icon">&#9868;</span> Цитировать</button>
           </div>
         </div>

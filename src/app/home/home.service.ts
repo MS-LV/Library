@@ -1,12 +1,22 @@
 import {ElementRef, Injectable} from '@angular/core';
-import {interval} from "rxjs";
+import {Observable, take} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {IBookDto} from "../admin/pages/books/books.interface";
+import {urlPathHandler, UrlsList} from "../utils/urls.util";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+  }
+
+  getBooks(): Observable<IBookDto[]> {
+    const url = urlPathHandler(UrlsList.book);
+    return this.http.get<IBookDto[]>(url).pipe(take(1));
+  }
+
   scrollSlider(inputRange: HTMLInputElement, element: ElementRef, ox = 'x') {
     const slideArea = <HTMLDivElement>element.nativeElement;
     if (ox.toLowerCase() === 'x') {

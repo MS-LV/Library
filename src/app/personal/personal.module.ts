@@ -8,6 +8,7 @@ import {FooterComponent} from "../shared/footer/footer.component";
 import {HeaderComponent} from "../shared/header/header.component";
 import {PaginationComponent} from "../shared/pagination/pagination.component";
 import {AuthGuard} from "../shared/guards/auth.guard";
+import {PersonalService} from "./personal.service";
 
 
 const routes: Routes = [
@@ -28,7 +29,8 @@ const routes: Routes = [
     FooterComponent,
     HeaderComponent,
     PaginationComponent
-  ]
+  ],
+  providers: [PersonalService]
 })
 export class PersonalModule {
 }

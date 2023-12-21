@@ -20,7 +20,10 @@
           <div class="type-text">По рейтингу</div>
         </div>
       </div>
-      <input type="text" class="search-area" placeholder="Поиск по названию">
+      <input type="text"
+             #textField
+             class="search-area"
+             placeholder="Поиск по названию">
     </section>
 
     <section class="filter">
@@ -156,11 +159,10 @@
           <button type="reset">Сбросить</button>
         </div>
       </aside>
-      <section class="filter-items">
+      <section *ngIf="bookList$ | async as bookList" class="filter-items">
         <h1 hidden>Filtered items</h1>
-        <com-book-card *ngFor="let book of booksData"
-                       routerLink="srdsfsdfsd"
-                       [bookData]="book"></com-book-card>
+        <com-book-card *ngFor="let book of bookList"
+                       [book]="book"></com-book-card>
       </section>
 
     </section>

@@ -1,15 +1,27 @@
-import {Component, Input} from '@angular/core';
-import {IBookData} from "./book-card.interface";
+import {Component, Input, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
+import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak.util";
+import {IBookDto} from "../../admin/pages/books/books.interface";
+import {urlPathHandler} from "../../utils/urls.util";
+import {RouterLink} from "@angular/router";
 
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'com-book-card',
   templateUrl: './book-card.component.html',
   styleUrls: ['./book-card.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
 })
-export class BookCardComponent {
-  imgURL = `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`;
-  @Input() bookData!: IBookData;
+export class BookCardComponent implements OnInit {
+  imgURL = '';
+  @Input() book!: IBookDto;
+
+  constructor() {
+  }
+
+  ngOnInit() {
+    this.imgURL = urlPathHandler('book-images', this.book.images[0] ?? 'no-image.jpg');
+  }
 }
+

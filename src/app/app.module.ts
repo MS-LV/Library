@@ -5,8 +5,9 @@ import {RouterLink} from "@angular/router";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {AdminInterceptor} from "./admin/interceptors/admin.interceptor";
 
 @NgModule({
   declarations: [
@@ -18,9 +19,11 @@ import {ReactiveFormsModule} from "@angular/forms";
     RouterLink,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AdminInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

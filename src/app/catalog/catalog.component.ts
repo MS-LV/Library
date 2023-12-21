@@ -1,12 +1,17 @@
-import {Component} from '@angular/core';
-import {IBookData} from "../shared/book-card/book-card.interface";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
+import {debounceTime, filter, fromEvent, Observable, tap} from "rxjs";
+import {CatalogService} from "./catalog.service";
+import {IBookDto} from "../admin/pages/books/books.interface";
 
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent {
+export class CatalogComponent implements OnInit {
+  @ViewChild('textField', {static: true}) textField!: ElementRef;
   filter = {
     genres: ['экшен', 'фэнтези', 'комедия', 'романтика', 'гарем', 'игра'],
     authors: ['Chaos', 'Jee Gab Songs', 'Ro Yu-jin', 'Ichinoda Ichiri', 'Tomo Sui', 'Park Sanel', 'Mon ji Hyon', 'Fan Bone', 'Shirakome Ryo'],
@@ -19,89 +24,50 @@ export class CatalogComponent {
     statusBook: ['продолжаеться', 'завершен', 'анонос', 'приостановлен', 'прекращен'],
     events: ['читаю', 'в планах', 'брошено', 'прочитано', 'любымие']
   }
+  bookList$: Observable<IBookDto[]> = new Observable<IBookDto[]>();
 
-  booksData: IBookData[] = [
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Золотое слово мастера',
-      author: 'Tomoto Sui',
-      country: 'Япония',
-      status: 'Переводится',
-      chapters: 239,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    }
-  ]
+  constructor(private service: CatalogService) {
+  }
 
+  ngOnInit(): void {
+    this.bookList$ = this.service.getBooks();
+    this.textFieldEvents();
+  }
+
+  private textFieldEvents() {
+    const textField = this.textField.nativeElement;
+    const textFieldInput = fromEvent<InputEvent>(textField, 'input');
+    const textFieldEnter = fromEvent<KeyboardEvent>(textField, 'keydown');
+    textFieldInput.pipe(
+      debounceTime(1000),
+      filter(() => {
+        return textField.value.trim();
+      }),
+      tap(() => {
+        const textFieldValue = textField.value;
+        const query = `?query=${textFieldValue}`;
+        this.bookList$ = this.service.getBooks(query);
+      })
+    ).subscribe();
+    textFieldEnter
+      .pipe(
+        filter(event => {
+          const keyEnter = event.key === 'Enter'
+          const textFieldValue = textField.value.trim();
+          // return keyEnter && textFieldValue;
+          return keyEnter;
+        }),
+        tap(() => {
+          this.refreshBookList();
+        })
+      )
+      .subscribe()
+  }
+
+  private refreshBookList(): void {
+    const textField = this.textField.nativeElement;
+    const textFieldValue = textField.value;
+    const query = `?query=${textFieldValue}`;
+    this.bookList$ = this.service.getBooks(query);
+  }
 }

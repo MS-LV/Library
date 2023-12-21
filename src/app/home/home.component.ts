@@ -1,8 +1,8 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {interval, Subscription} from "rxjs";
+import {interval, Observable, Subscription} from "rxjs";
 import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
 import {HomeService} from "./home.service";
-import {IBookData} from "../shared/book-card/book-card.interface";
+import {IBookDto} from "../admin/pages/books/books.interface";
 
 @CleanSubscriptionsAndMemoryLeaks()
 @Component({
@@ -14,153 +14,18 @@ export class HomeComponent implements OnInit {
   @ViewChild('slidesPictures', {static: true}) private _slideArea!: ElementRef<HTMLDivElement>;
   @ViewChild('hotSlider') private hotSlider!: ElementRef;
   @ViewChild('sectionSlider') sectionSlide!: ElementRef;
-  timer!: Subscription;
+  activeSlide = 0;
+  booksList$: Observable<IBookDto[]> = new Observable<IBookDto[]>();
   slideArea!: HTMLDivElement;
   slidePictures!: HTMLDivElement[];
-  activeSlide = 0;
-  booksData: IBookData[] = [
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Золотое слово мастера',
-      author: 'Tomoto Sui',
-      country: 'Япония',
-      status: 'Переводится',
-      chapters: 239,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Золотое слово мастера',
-      author: 'Tomoto Sui',
-      country: 'Япония',
-      status: 'Переводится',
-      chapters: 239,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Золотое слово мастера',
-      author: 'Tomoto Sui',
-      country: 'Япония',
-      status: 'Переводится',
-      chapters: 239,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-  ]
+  timer!: Subscription;
 
   constructor(private service: HomeService) {
   }
 
   ngOnInit(): void {
     this.prepareSlider();
+    this.booksList$ = this.service.getBooks();
     document.body.scrollTo({
       // top: 4500
     })

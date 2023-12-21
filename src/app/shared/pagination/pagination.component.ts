@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {CommonModule} from "@angular/common";
+import {CleanSubscriptionsAndMemoryLeaks} from "../../utils/memory-leak.util";
 
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'com-pagination',
   templateUrl: './pagination.component.html',
@@ -11,5 +13,5 @@ import {CommonModule} from "@angular/common";
 export class PaginationComponent {
 
   protected readonly Array = Array;
-  activePagination = 2;
+  activePagination = 0;
 }

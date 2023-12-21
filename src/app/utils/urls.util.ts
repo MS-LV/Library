@@ -9,18 +9,18 @@ export enum UrlsList {
   adminRedirectTo = '/admin',
 
   // request to server list
-  registration = 'auth/create',
-  signIn = 'auth',
-  authVerify = 'auth/verify',
+  user = 'users',
+  userCreate = 'users/create',
+  userVerify = 'users/verify',
 
-  authAdminVerify = 'admin/verify',
-  registrationAdmin = 'admin/create',
-  signInAdmin = 'admin',
+  admin = 'admin',
+  adminCreate = 'admin/create',
+  adminVerify = 'admin/verify',
 
-  addBook = 'add-book/'
+  book = 'books',
 }
 
-export function urlPathHandler(url: string): string {
+export function urlPathHandler(url: string, id: string = ''): string {
   const serverHost = upConfig.serverHost.replace(/\/+$/, '');
-  return `${serverHost}/${url}`;
+  return `${serverHost}/${url}/${id}`;
 }

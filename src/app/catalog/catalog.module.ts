@@ -8,6 +8,7 @@ import {BookCardComponent} from "../shared/book-card/book-card.component";
 import {FooterComponent} from "../shared/footer/footer.component";
 import {HeaderComponent} from "../shared/header/header.component";
 import {AuthGuard} from "../shared/guards/auth.guard";
+import {CatalogService} from "./catalog.service";
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     BookCardComponent,
     FooterComponent,
     HeaderComponent
-  ]
+  ],
+  providers: [CatalogService]
 })
 export class CatalogModule {
 }

@@ -67,8 +67,8 @@
       </header>
       <section class="hot-books" #hotSlider>
         <h1 hidden>Hot Books</h1>
-        <div class="hot-slider">
-          <com-book-card *ngFor="let book of booksData" [bookData]="book"></com-book-card>
+        <div *ngIf="booksList$ | async as bookList" class="hot-slider">
+          <com-book-card *ngFor="let book of bookList" [book]="book"></com-book-card>
         </div>
       </section>
       <input class="hot-thumb" (input)="hotProgress($event)" type="range" min="0" max="100" value="0">

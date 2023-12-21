@@ -1,23 +1,22 @@
 <img class="book-img" [src]="imgURL">
 <img [src]="imgURL" alt="books cards" class="window-img">
-<header class="book-title" [innerHTML]="bookData.name"></header>
+<header class="book-title">{{book.bookName}}</header>
 <div class="book-background">
   <div class="book-infos">
     <div class="book-characters">
       <div>Автор:</div>
       <div>Страна:</div>
       <div>Состояние:</div>
-      <div>Кол. глав: {{'hello'}}</div>
+      <div>Кол. глав:</div>
       <div>Жанры:</div>
     </div>
     <div class="book-values">
-      <div>{{bookData.author}}</div>
-      <div>{{bookData.country}}</div>
-      <div>{{bookData.status}}</div>
-      <div>{{bookData.chapters}}</div>
-      <div><span *ngFor="let genre of bookData.genre">{{genre + ', '}}</span></div>
-      <!--      <div>aslkdas jkdalksj dlkajslkdj aslkjdl kajsdlk jasldkja slkdjalksjd lkajsdlk</div>-->
+      <div>{{book.author}}</div>
+      <div>{{book.country}}</div>
+      <div>{{book.status}}</div>
+      <div>{{book.chapterLength}}</div>
+      <div><span *ngFor="let genre of book.bookGenres">{{genre + ', '}}</span></div>
     </div>
-    <div class="book-icon">&rightarrow;</div>
+    <div class="book-icon" [routerLink]="['/catalog', book._id]">&rightarrow;</div>
   </div>
 </div>

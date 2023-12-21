@@ -16,7 +16,7 @@
             <img src="assets/img/x-user-img.svg" alt="user image">
           </div>
           <div class="left-info">
-            <div class="left-name">TR Goul</div>
+            <div class="left-name">{{userInfo.name}}</div>
             <div class="left-subtitle">Всегда оставайся тем кем на самом деле есть.</div>
             <div class="left-level">Уровен 6</div>
           </div>
@@ -110,9 +110,9 @@
         <header class="filter-header">
           <input type="text" name="" id="">
         </header>
-        <div class="filter-content">
-          <com-book-card *ngFor="let book of booksData"
-                         [bookData]="book"></com-book-card>
+        <div *ngIf="booksList$ | async as booksList" class="filter-content">
+          <com-book-card *ngFor="let book of booksList"
+                         [book]="book"></com-book-card>
         </div>
         <com-pagination></com-pagination>
       </div>

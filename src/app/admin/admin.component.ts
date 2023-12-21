@@ -2,13 +2,12 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
-import {AdminAsideComponent} from "./admin-shared/admin-aside/admin-aside.component";
-import {ActivatedRoute, Router, RouterOutlet} from "@angular/router";
+import {RouterOutlet} from "@angular/router";
 import {AdminSharedModule} from "./admin-shared/admin-shared.module";
-import {urlPathHandler, UrlsList} from "../utils/urls.util";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AdminService} from "./admin.service";
+import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
 
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',

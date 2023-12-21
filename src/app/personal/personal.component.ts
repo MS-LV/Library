@@ -1,16 +1,26 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IBookData} from "../shared/book-card/book-card.interface";
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
+import {IUserDto} from "../admin/pages/admin-users/admin-users.interface";
+import {PersonalService} from "./personal.service";
+import {Observable} from "rxjs";
+import {IBookDto} from "../admin/pages/books/books.interface";
+import {ConfigsService} from "../shared/services/configs.service";
 
+
+
+@CleanSubscriptionsAndMemoryLeaks()
 @Component({
   selector: 'app-personal',
   templateUrl: './personal.component.html',
   styleUrls: ['./personal.component.scss']
 })
-export class PersonalComponent {
+export class PersonalComponent implements OnInit {
   @ViewChild('bookSlider', {static: true}) bookSlider!: ElementRef;
+  userInfo!: IUserDto;
   slideIndex = 0;
   characterIdx = 0;
   viewIdx = 1;
+  booksList$: Observable<IBookDto[]> = new Observable<IBookDto[]>();
   bookSlides = [
     'assets/img/personal/book-card.svg',
     'assets/img/personal/book-card.svg',
@@ -26,89 +36,6 @@ export class PersonalComponent {
     'Игнорь-лист',
     'Уведомления'
   ];
-  booksData: IBookData[] = [
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Золотое слово мастера',
-      author: 'Tomoto Sui',
-      country: 'Япония',
-      status: 'Переводится',
-      chapters: 239,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Маг на полную вставку',
-      author: 'Chaos',
-      country: 'Китай',
-      status: 'Закончено',
-      chapters: 2100,
-      genre: ['Боевик', 'фентези', 'Боевик', 'фентези', 'Боевик', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Лишный в своей же истории ',
-      author: 'Jee Gab Song',
-      country: 'Южная Корея',
-      status: 'Продолжается',
-      chapters: 439,
-      genre: ['Экшн', 'фентези', 'комедия', 'Экшн', 'фентези', 'комедия'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Второе пришествие обжорства',
-      author: 'Ro Yu-jin',
-      country: ' Южная Корея',
-      status: 'Продолжается',
-      chapters: 100,
-      genre: ['Фентези', 'романт', 'Фентези', 'романт', 'Фентези', 'романт'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    },
-    {
-      name: 'Берсерк обжорства',
-      author: 'Ichinoda Ichiri',
-      country: 'Япония',
-      status: 'Продолжается',
-      chapters: 164,
-      genre: ['Сенен', 'фентези', 'Сенен', 'фентези', 'Сенен', 'фентези'],
-      imgURL: `assets/img/book-card/background-${Math.ceil(Math.random() * 6)}.svg`,
-    }
-  ];
   filterCharacter: Array<{ name: string, much: number }> = [
     {name: 'Все', much: 220},
     {name: 'Читаю', much: 63},
@@ -122,7 +49,13 @@ export class PersonalComponent {
     {name: 'Плитки', icon: 'assets/icons/tiles.svg'},
   ]
 
-  constructor() {
+  constructor(private service: PersonalService) {
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem("userInfo") || '';
+    this.userInfo = JSON.parse(token);
+    this.booksList$ = this.service.getBooks();
   }
 
   slideBook(i: number) {
