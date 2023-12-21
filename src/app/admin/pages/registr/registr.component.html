@@ -1,0 +1,19 @@
+<main class="wrapper">
+  <form class="form" [formGroup]="formGroup" (ngSubmit)="formSubmit()">
+    <h1 class="form-title">Регистрация</h1>
+    <h3 class="form-subtitle">Создать новый админ</h3>
+    <div class="form-fields">
+      <div *ngFor="let field of formFields" class="form-field">
+        <label [for]="field.name">
+          <mat-icon>{{field.icon}}</mat-icon>
+        </label>
+        <input [type]="field.type"
+               formControlName="{{field.name}}"
+               [placeholder]="field.placeholder"
+               [name]="field.name"
+               [id]="field.name" [autocomplete]="field.autocomplete">
+      </div>
+    </div>
+    <button class="form-submit" [disabled]="formGroup.invalid" type="submit">Создать Аккаунт</button>
+  </form>
+</main>

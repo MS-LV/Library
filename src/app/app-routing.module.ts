@@ -36,7 +36,6 @@ const routes: Routes = [
     scrollPositionRestoration: 'top',
     anchorScrolling: 'enabled',
     initialNavigation: 'enabledBlocking',
-    // onSameUrlNavigation: 'reload'
   })],
   exports: [RouterModule]
 })

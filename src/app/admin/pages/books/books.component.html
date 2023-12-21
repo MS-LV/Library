@@ -1,0 +1,9 @@
+<div class="book">
+  <div class="book-name">Названия</div>
+  <div class="book-author">Автор</div>
+  <div class="book-chapter">кол-во Главы</div>
+  <div class="book-delete">Удалить</div>
+</div>
+<ng-container *ngIf="bookList$ | async as bookList">
+  <comp-book *ngFor="let book of bookList" [book]="book"></comp-book>
+</ng-container>

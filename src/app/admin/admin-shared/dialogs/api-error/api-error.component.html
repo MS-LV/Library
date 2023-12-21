@@ -1,0 +1,13 @@
+<div class="wrapper">
+  <header>
+    <h1 mat-dialog-title class="title">Ошибка</h1>
+    <mat-icon class="icon" mat-dialog-close>close</mat-icon>
+  </header>
+  <div class="content" mat-dialog-content>
+    <mat-icon class="icon warn">warning</mat-icon>
+    <div class="text">{{response.error.text || 'неизвестная ошибка !'}}</div>
+  </div>
+  <div class="buttons">
+    <button mat-button mat-dialog-close>OK</button>
+  </div>
+</div>

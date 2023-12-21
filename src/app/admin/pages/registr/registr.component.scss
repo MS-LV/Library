@@ -1,0 +1,86 @@
+@import "/src/mixin";
+@import "/src/templates";
+
+:host {
+  @include flex-easy-control(center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 6;
+  background-color: #f0f4f7;
+}
+
+.form {
+  @include flex-hard-control(flex-start, flex-start, column);
+  background-color: white;
+  width: 480px;
+  min-height: 500px;
+  padding: 1.5rem;
+  border-radius: .375rem;
+}
+
+.form-title {
+  font-size: calc(1.375rem + 1.5vw);
+}
+
+.form-subtitle {
+  font-weight: 100;
+}
+
+.form-fields {
+  width: 100%;
+  flex: 1 1 auto;
+
+  > * + * {
+    margin-top: 1rem;
+  }
+}
+
+.form-field {
+  @include flex-easy-control(flex-start, center);
+  height: 43px;
+  border: 1px solid rgba(44, 56, 74, 0.95);
+  border-radius: .375rem;
+  overflow: hidden;
+
+  &:focus {
+    outline: 5px solid skyblue;
+  }
+
+  label,
+  input {
+    height: 100%;
+  }
+
+  label {
+    @include flex-easy-control(center, center);
+    background: rgb(235, 237, 239);
+    width: 45px;
+    border-right: 1px solid rgba(44, 56, 74, 0.95);
+  }
+
+  input {
+    flex: 1 1 auto;
+    padding-inline-start: 10px;
+  }
+}
+
+.form-submit {
+  background: #51cc8a;
+  height: 40px;
+  width: 100%;
+  border-radius: .375rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.1s;
+  &:hover {
+    color: white;
+    background: #45ad75;
+  }
+  &[disabled] {
+    background: darkgray;
+    color: #333;
+  }
+}

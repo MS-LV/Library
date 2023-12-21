@@ -1,0 +1,9 @@
+<div class="user">
+  <div class="user-name">Имя</div>
+  <div class="user-email">Почта</div>
+  <div class="user-date">Создаль</div>
+  <div class="user-delete">Удалить</div>
+</div>
+<ng-container *ngIf="usersList$ | async as usersList">
+  <comp-user *ngFor="let user of usersList" [user]="user"></comp-user>
+</ng-container>

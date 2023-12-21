@@ -1,0 +1,126 @@
+<ng-container *ngIf="book$ | async as book">
+  <div class="content center">
+    <div class="conductor">
+      <div routerLink="/home">Главаная</div>
+      <div class="catalog-icon">&rightarrow;</div>
+      <div routerLink="/catalog">Каталог</div>
+      <div class="catalog-icon">&rightarrow;</div>
+      <div class="active">{{book.bookName}}</div>
+    </div>
+  </div>
+  <section class="first">
+    <div class="first-card">
+      <img src="assets/img/book/first-background.svg" alt="first card background" class="card-background">
+      <div class="first-title">{{book.bookName}}</div>
+      <div class="first-left">
+        <div class="first-slider">
+          <div class="slider-items" #bookSlider>
+            <div *ngFor="let image of book.images" class="slider-item">
+              <img [src]="sourceURL + image" [alt]="book.bookName">
+            </div>
+            <img *ngIf="book.images"
+                 class="slider-item no-img"
+                 [src]="sourceURL + 'no-image.jpg'">
+          </div>
+          <div class="slider-btns">
+            <button *ngFor="let slide of book.images let i = index"
+                    class="slider-btn"
+                    [class.active]="i === activeCard"
+                    (click)="slideBook(i)"></button>
+          </div>
+        </div>
+        <button class="first-btn read">Начать читать</button>
+        <button class="first-btn add-list">Добавить в список
+          <svg width="14" height="11" fill="white">
+            <use xlink:href="#myArrow" x="0" y="0"></use>
+          </svg>
+        </button>
+      </div>
+      <div class="first-right">
+        <div class="first-property author">
+          <div class="property-title">Автор:</div>
+          <div class="property-value">{{book.author}}</div>
+        </div>
+        <div class="first-property name">
+          <div class="property-title">Альтернативное название:</div>
+          <div class="property-value">{{book.alternate_name}}</div>
+        </div>
+        <div class="first-property type">
+          <div class="property-title">Тип:</div>
+          <div class="property-value">{{book.type}}</div>
+        </div>
+        <div class="first-property genre">
+          <div class="property-title"> Жанры:</div>
+          <div class="property-value">
+            <span *ngFor="let genre of book.bookGenres">{{genre}}, </span>
+          </div>
+        </div>
+        <div class="first-property tags">
+          <div class="property-title"> Теги:</div>
+          <div class="property-value">
+            <span *ngFor="let tag of book.bookTags">{{tag}}, </span>
+          </div>
+        </div>
+        <div class="first-property year">
+          <div class="property-title">Год выпуска:</div>
+          <div class="property-value">{{book.released | date:'yyyy'}}</div>
+        </div>
+        <div class="first-property published">
+          <div class="property-title">Опубликовано:</div>
+          <div class="property-value">{{book.createdAt | date:'dd.MM.yyyy'}}</div>
+        </div>
+        <div class="first-property translate">
+          <div class="property-title">Статус перевода:</div>
+          <div class="property-value">{{book.translating}}</div>
+        </div>
+        <div class="first-property status">
+          <div class="property-title">Статус тайтла:</div>
+          <div class="property-value">{{book.status}}</div>
+        </div>
+        <div class="first-property country">
+          <div class="property-title">Страна:</div>
+          <div class="property-value">{{book.country}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="description">
+    <img src="assets/img/book/description-background.svg" alt="description {{book.bookName}}"
+         class="description-background">
+    <h1 hidden>Description Book</h1>
+    <section class="description-card">
+      <img *ngIf="book.images[1]" class="description-img" [src]="sourceURL + book.images[1]" alt="description image">
+      <h2 class="description-title">Описание</h2>
+      <div class="description-text" [innerHTML]="book.descriptionText"></div>
+    </section>
+  </section>
+  <section class="chapter">
+    <h2 hidden>Chapter</h2>
+    <header class="chapter-header">
+      <img src="assets/img/book/chapter-background.svg" alt="book chapters background">
+      <div class="content center">
+        <h2 class="chapter-header-title">Ишите удобно ту главу на которой остановились и читайте в
+          удоволствие!</h2>
+        <input type="text"
+               #searchChapterInput
+               class="chapter-search"
+               (input)="searchChapter(searchChapterInput, book.book)"
+               placeholder="Поиск по названию главы">
+      </div>
+    </header>
+    <section class="chapter-content">
+      <h2 hidden>book chapters</h2>
+      <div class="content center">
+        <div class="chapter-chapters">
+          <div *ngFor="let chapter of bookChapters || book.book;"
+               routerLink="{{chapter.id}}"
+               class="chapter-item">
+            <span>Глава {{chapter.id + 1}}.</span>
+            <span>{{chapter.title}}</span>
+          </div>
+        </div>
+        <com-pagination></com-pagination>
+      </div>
+    </section>
+  </section>
+</ng-container>

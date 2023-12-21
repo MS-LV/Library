@@ -1,0 +1,237 @@
+<ng-container *ngIf="locale | async as locale">
+  <h1 class="title" align="center">Добавить книгу</h1>
+
+  <form class="form" [formGroup]="formGroup"
+        (ngSubmit)="onBookFormSubmit()">
+    <section class="form-left">
+      <h2 hidden>Добавить книгу</h2>
+      <div class="form-images">
+        <div *ngFor="let image of uploadImages" class="images-item">
+          <img [src]="image">
+        </div>
+        <div class="images-item add-btn">
+          <label>
+            <mat-icon>add</mat-icon>
+          </label>
+          <input #imageInput
+                 multiple
+                 type="file"
+                 accept="image/*"
+                 (change)="onProcessImages(imageInput)">
+        </div>
+      </div>
+      <div class="form-comment">
+        <angular-editor formControlName="descriptionText"
+                        placeholder="Ваша описания..."
+                        [minlength]="config.minLengthDescriptionArea"
+                        [maxlength]="config.maxLengthDescriptionArea"
+                        [config]="editorConfig"
+                        (paste)="onPasteDescription($event)"
+                        [(ngModel)]="htmlContent"></angular-editor>
+      </div>
+    </section>
+    <section class="form-right">
+      <h2 hidden>character Books</h2>
+      <mat-form-field class="right-textfield">
+        <mat-label>Автор</mat-label>
+        <input matInput type="text"
+               formControlName="author"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Имя книга</mat-label>
+        <input matInput type="text"
+               formControlName="bookName"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Альтернативное названия</mat-label>
+        <input matInput type="text"
+               formControlName="alternate_name"
+               [minlength]="config.minLengthAlternateName"
+               [maxlength]="config.maxLengthAlternateName">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Тип</mat-label>
+        <input matInput type="text"
+               formControlName="type"
+               list="book-types"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+
+      <mat-form-field class="right-textfield">
+        <mat-label>Статус тайтла</mat-label>
+        <input matInput type="text"
+               formControlName="status"
+               list="title-status"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Статус перевода</mat-label>
+        <input matInput type="text"
+               formControlName="translating"
+               list="translating"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Страна производства</mat-label>
+        <input type="text" matInput
+               formControlName="country" list="countries"
+               [minlength]="config.minLengthArea"
+               [maxlength]="config.maxLengthArea">
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Жанры</mat-label>
+        <mat-chip-grid #genresGrid aria-label="genre selection">
+          <mat-chip-row *ngFor="let genre of bookGenres" (removed)="onRemoveChips(genre, bookGenres)">
+            {{genre}}
+            <button matChipRemove [attr.aria-label]="'remove ' + genre">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="выбирай жанры" #genresInput formControlName="bookGenres"
+               [matChipInputFor]="genresGrid" [matAutocomplete]="genresAutoComplete"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="onAddChips($event, locale.bookGenres, bookGenres)"/>
+        <mat-autocomplete #genresAutoComplete="matAutocomplete"
+                          (optionSelected)="onSelected($event, genresInput, bookGenres)">
+          <mat-option *ngFor="let genre of locale.bookGenres" [value]="genre">
+            {{genre}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Теги</mat-label>
+        <mat-chip-grid #tagsGrid aria-label="Fruit selection">
+          <mat-chip-row *ngFor="let tag of bookTags" (removed)="onRemoveChips(tag, bookTags)">
+            {{tag}}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="выбирай теги" #tagsInput formControlName="bookTags"
+               [matChipInputFor]="tagsGrid" [matAutocomplete]="tagsAutoComplete"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               (matChipInputTokenEnd)="onAddChips($event, locale.bookTags, bookTags)"/>
+        <mat-autocomplete #tagsAutoComplete="matAutocomplete"
+                          (optionSelected)="onSelected($event, tagsInput, bookTags)">
+          <mat-option *ngFor="let tag of locale.bookTags" [value]="tag">
+            {{tag}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="right-textfield">
+        <mat-label>Выпущень</mat-label>
+        <input matInput [matDatepicker]="releasedDate" formControlName="released">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="releasedDate"></mat-datepicker-toggle>
+        <mat-datepicker #releasedDate></mat-datepicker>
+      </mat-form-field>
+    </section>
+    <section class="form-file">
+      <input #bookInput
+             class="invisible"
+             id="book-file"
+             type="file"
+             accept=".pdf" (change)="onProcessFile(bookInput)">
+      <label class="file-label" for="book-file">
+        <mat-icon>upload_2</mat-icon>
+        <span class="label-description">вставите файл (.pdf)</span>
+      </label>
+    </section>
+    <section *ngIf="fileChose" class="chapters">
+      <table *ngIf="bookChapters.length" class="chapter-table">
+        <caption>Главы</caption>
+        <thead>
+        <th>№</th>
+        <th>Заголовок</th>
+        <th>Начало(страныца)</th>
+        <th>Конец(страныца)</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let chapter of bookChapters; let idx = index">
+          <td>{{idx + 1}}</td>
+          <td>{{chapter.title}}</td>
+          <td>{{chapter.startPage}}</td>
+          <td>{{chapter.endPage}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="add-chapter">
+        <mat-form-field class="title-chapter">
+          <mat-label>Имя глава</mat-label>
+          <input matInput type="text"
+                 [formControl]="chapterTitle"
+                 [(ngModel)]="generateChapter.title"
+                 [minlength]="config.minLengthChapterTitle"
+                 [maxlength]="config.maxLengthChapterTitle">
+          <button *ngIf="generateChapter.title" matSuffix mat-icon-button aria-label="Clear"
+                  (click)="generateChapter.title=''">
+            <mat-icon tabindex="-1">close</mat-icon>
+          </button>
+        </mat-form-field>
+        <mat-form-field class="page-chapter">
+          <mat-label>до {{maxPage}}</mat-label>
+          <input matInput type="number"
+                 [formControl]="chapterEndPage"
+                 [min]="generateChapter.startPage"
+                 [max]="maxPage"
+                 [(ngModel)]="generateChapter.endPage">
+        </mat-form-field>
+        <button type="button"
+                mat-raised-button color="primary"
+                [disabled]="isValidChapter()"
+                (click)="addChapter()">Добавить
+        </button>
+      </div>
+    </section>
+
+    <section class="control-buttons">
+      <button type="submit" mat-raised-button
+              color="primary">Отправить
+        <!--              [disabled]="formGroup.invalid"-->
+      </button>
+      <button type="reset" mat-raised-button
+              color="warn"
+              (click)="onResetForm()">Очистить
+      </button>
+    </section>
+  </form>
+  <!--  auto completes list-->
+  <datalist id="countries">
+    <option *ngFor="let country of locale.bookCountries" [value]="country">{{country}}</option>
+  </datalist>
+  <datalist id="book-types">
+    <option>Манга</option>
+    <option>Драмма</option>
+    <option>Новелла</option>
+    <option>Манхва</option>
+    <option>Ранобэ</option>
+  </datalist>
+  <datalist id="title-status">
+    <option>Онгоинг</option>
+    <option>Анонос</option>
+    <option>Завершен</option>
+    <option>Приостановлен</option>
+    <option>Прекращен</option>
+  </datalist>
+  <datalist id="translating">
+    <option>Переводится</option>
+    <option>Завершен</option>
+    <option>Заморожен</option>
+    <option>Заброшен</option>
+  </datalist>
+
+</ng-container>
+<div *ngIf="onLoad" class="onload">
+  <mat-spinner></mat-spinner>
+</div>
+
+

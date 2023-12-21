@@ -1,0 +1,72 @@
+@import "/src/mixin";
+
+:host {
+  @include flex-easy-control(center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  opacity: 1;
+  //animation: host 0.3s linear .3s 1 forwards;
+}
+
+.warn {
+  color: orange;
+}
+
+.wrapper {
+  border-radius: .375rem;
+  overflow: hidden;
+  background: #fff;
+  max-width: min(80%, 500px);
+}
+
+header {
+  @include flex-easy-control(space-between, center);
+  padding: 5px 24px;
+}
+
+.title {
+  @include flex-easy-control(center, center);
+  text-transform: capitalize;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+.content {
+  @include flex-easy-control(flex-start, center);
+  column-gap: 10px;
+}
+
+.icon {
+  flex: 0 0 fit-content;
+}
+
+.text {
+  flex: 1 1 auto;
+  font-size: 18px;
+  word-break: break-word;
+  line-height: 1.2;
+}
+
+.buttons {
+  @include flex-easy-control(flex-end, center);
+}
+
+button {
+  // border-radius: none;
+  margin: 10px;
+}
+
+@keyframes host {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

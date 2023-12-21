@@ -1,0 +1,45 @@
+@import "/src/mixin";
+
+:host {
+  display: block;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.wrapper {
+  @include flex-easy-control(space-between, center);
+  height: 100%;
+}
+
+.title {
+  font-size: 18px;
+  font-family: Marmelad, serif;
+  text-transform: capitalize;
+}
+
+.left,
+.right {
+  @include flex-easy-control(center, center);
+  flex: 1 1 50%;
+}
+
+.right {
+  background: #1f2133;
+  height: 100%;
+  img {
+    width: 90%;
+    transform: translateX(8%);
+  }
+}
+
+.container {
+  max-width: 80%;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1;
+  span {
+    font-weight: bold;
+  }
+}

@@ -1,0 +1,34 @@
+@import "/src/mixin";
+@import "/src/templates";
+:host {
+  display: block;
+  width: 100%;
+}
+
+.book {
+  @include flex-easy-control(space-around, center);
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid var(--dark, #212333);
+  column-gap: 10px;
+  > * {
+    white-space: nowrap;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    text-align: center;
+  }
+}
+.book-name,
+.book-author {
+  flex: 0 0 30%;
+}
+
+.book-chapter {
+  flex: 0 1 60px;
+}
+
+.book-delete {
+  @include flex-easy-control(center, center);
+  flex: 0 0 100px;
+  height: 80%;
+}

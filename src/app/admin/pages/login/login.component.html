@@ -1,0 +1,26 @@
+<main class="wrapper">
+  <form class="form" [formGroup]="formGroup" (ngSubmit)="formSubmit()">
+    <h1 class="form-title">Вход</h1>
+    <h3 class="form-subtitle">Войдите в свой аккаунт</h3>
+    <div class="form-fields">
+      <div *ngFor="let field of formFields" class="form-field">
+        <label [for]="field.name">
+          <mat-icon>{{field.icon}}</mat-icon>
+        </label>
+        <input formControlName="{{field.name}}"
+               [type]="field.name"
+               [placeholder]="field.placeholder"
+               [autocomplete]="field.autocomplete"
+               [name]="field.name"
+               [id]="field.name">
+      </div>
+    </div>
+    <button class="form-submit" [disabled]="formGroup.invalid" type="submit">Входь</button>
+  </form>
+  <div class="description">
+    <h1 class="description-title">Регистрация</h1>
+    <p class="description-text">С перво регистрируете если у вас нет. Мы хотим убедится что вы являетесь админ этого
+      приложения. Можете продолжат после того вы доказываете что вы админ.</p>
+    <div class="description-link" [routerLink]="['/admin', { outlets: { authorization: 'registration' } }]">Регистрируй Сейчас</div>
+  </div>
+</main>

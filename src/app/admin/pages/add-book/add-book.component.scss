@@ -1,0 +1,217 @@
+@import "/src/mixin";
+@import "/src/templates";
+
+:host {
+  position: relative;
+  padding: 0 20px 100px;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+}
+
+.invisible {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 2;
+}
+
+.content-center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.form-comment ::ng-deep .angular-editor-textarea {
+  resize: none;
+  outline: none;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.title {
+  font-size: 30px;
+  margin: 10px auto 20px;
+}
+
+.form {
+  @include flex-hard-control(flex-start, flex-start, row, wrap);
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 100%;
+  column-gap: 20px;
+  > * + * {
+    margin-top: 20px;
+  }
+}
+
+.form-left,
+.form-right {
+  flex: 1 1 calc(50% - 20px);
+}
+
+.form-left {
+  @include flex-hard-control(flex-start, flex-start, column);
+  row-gap: 20px;
+}
+
+.form-images {
+  @include flex-hard-control(flex-start, flex-start, row, wrap);
+  flex: 0 1 30%;
+  width: 100%;
+  gap: 10px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 2px dashed #212537;
+  border-radius: 10px;
+}
+
+.images-item {
+  position: relative;
+  height: 150px;
+  border-radius: 2%;
+
+  &:not(.add-btn) {
+    flex: 1 0 150px;
+    max-width: 200px;
+    overflow: hidden;
+  }
+
+  &.add-btn {
+    width: 100px;
+    height: 100px;
+    max-width: 150px;
+  }
+
+  > img {
+    @extend .responsive-img;
+  }
+}
+
+.add-btn {
+  position: relative;
+
+  input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 50%;
+  }
+
+  label {
+    @include flex-easy-control(center, center);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow: 0 0 10px #212537;
+  }
+
+  mat-icon {
+    zoom: 2;
+  }
+}
+
+input:focus {
+  border: none;
+}
+
+.form-right {
+}
+
+.right-textfield {
+  width: 100%;
+}
+
+.control-buttons {
+
+  > * + * {
+    margin-left: 20px;
+  }
+}
+
+.form-file {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  border: 1px dashed black;
+  overflow: hidden;
+}
+
+.chapters {
+  width: 100%;
+}
+
+.file-label {
+  @include flex-hard-control(center, center, column);
+  position: absolute;
+  top: 0;
+  left: 0;
+  scale: 2;
+  width: 100%;
+  height: 100%;
+
+  ::ng-deep .mat-icon {
+    font-size: 30px;
+  }
+}
+
+.chapter {
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+}
+
+.chapter-table {
+  margin: 20px auto;
+  border-collapse: collapse;
+  font-size: 18px;
+  border: 1px solid black;
+}
+caption {
+  margin: 0 0 20px;
+}
+
+td, th {
+  padding: 5px 10px;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+
+  :is(&:nth-of-type(3), &:nth-of-type(4)) {
+    text-align: right;
+  }
+}
+
+.add-chapter {
+  > * + * {
+    margin-left: 10px;
+  }
+}
+
+.title-chapter {
+  width: 50%;
+}
+
+.page-chapter {
+  width: 20%;
+}
+
+.page-chapter {
+
+}
+
+.onload {
+  @include flex-easy-control(center, center);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+  backdrop-filter: blur(2px);
+  overscroll-behavior-y: contain;
+}

@@ -1,0 +1,8 @@
+<div class="user">
+  <div class="user-name">{{user.name}}</div>
+  <div class="user-email">{{user.email}}</div>
+  <div class="user-date">{{user.createdAt | date:'dd/MM/yy'}}</div>
+  <div class="user-delete">
+    <mat-icon color="warn" (click)="deleteUser(user._id)">delete</mat-icon>
+  </div>
+</div>
