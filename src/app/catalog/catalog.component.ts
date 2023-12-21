@@ -54,8 +54,7 @@ export class CatalogComponent implements OnInit {
         filter(event => {
           const keyEnter = event.key === 'Enter'
           const textFieldValue = textField.value.trim();
-          // return keyEnter && textFieldValue;
-          return keyEnter;
+          return keyEnter && textFieldValue;
         }),
         tap(() => {
           this.refreshBookList();
