@@ -18,6 +18,7 @@ export enum UrlsList {
   adminVerify = 'admin/verify',
 
   book = 'books',
+  bookLazy = 'books/lazy'
 }
 
 export function urlPathHandler(url: string, id: string = ''): string {

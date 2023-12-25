@@ -4,7 +4,6 @@
   display: block;
   width: 100%;
 }
-
 .book {
   @include flex-easy-control(space-around, center);
   width: 100%;

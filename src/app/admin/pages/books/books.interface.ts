@@ -21,4 +21,5 @@ export interface IBookDto {
   __v: number;
 }
 
+export type IBookLazy = Pick<IBookDto, '_id'>;
 type book = {title: string, id: number}

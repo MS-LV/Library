@@ -40,7 +40,6 @@ export class PageComponent implements OnInit {
       .subscribe((chapter: IChapterDto) => {
         this.chapter = chapter;
         this.maxCharLength(chapter);
-        console.log('book: ', chapter)
       });
 
     this.service.getChapter(url)
