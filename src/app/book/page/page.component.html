@@ -26,12 +26,13 @@
   </aside>
 
   <main class="main content center">
-    <div class="chapter-title"></div>
     <div *ngFor="let chapter of chapter.book" class="chapter">
+      <div class="chapter-title">Глава {{chapterNumber + 1}} {{chapter.title}} </div>
       <div *ngFor="let page of chapter.content" class="chapter-page">
-        <div *ngFor="let line of page" [style.direction]="line.dir">
+        <span *ngFor="let line of page; let idx = index" [style.direction]="line.dir">
           {{line.str}}
-        </div>
+          <br *ngIf="isBreakLine(line.str)">
+        </span>
       </div>
     </div>
     <aside class="navigate inside content center">

@@ -83,7 +83,7 @@ export class AddBookService {
         const page = await this.pdfDocument.getPage(i);
         const content = await page.getTextContent();
         const items = <IBookLineCharacter[]>content.items;
-        const lines = items.map(({dir, str}) => ({dir, str}));
+        const lines = this.preparePdfObject(items);
         pdfBookResult.pages.push(lines);
       }
       this.pdfBook = pdfBookResult;
@@ -119,4 +119,7 @@ export class AddBookService {
     this.pdfBook = {numPages: 1, pages: []};
   }
 
+  private preparePdfObject(pdf: IBookLineCharacter[]): IBookLineCharacter[] {
+    return pdf.map(({dir, str}) => ({dir, str})).filter(({str}) => str.trim());
+  }
 }
