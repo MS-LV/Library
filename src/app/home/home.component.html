@@ -28,15 +28,15 @@
       </div>
     </div>
   </section>
-  <section class="novel">
+  <section *ngIf="randomBook" class="novel">
     <h1 hidden>Ранобе дня</h1>
     <img src="assets/img/home/novel-background.svg" alt="novel-days" class="novel-img">
     <section class="novel-card">
       <h1 class="novel-title">Ранобе дня</h1>
       <div class="novel-name">
         <div class="name-content">
-          <div class="name-title">RE:ZERO. Жизнь с нулья в альтернативном мире.</div>
-          <div class="name-subtitle">Таппэй Нагацуки</div>
+          <div class="name-title">RE:ZERO. {{randomBook.bookName}}.</div>
+          <div class="name-subtitle">{{randomBook.author}}</div>
         </div>
       </div>
       <div class="novel-archive">
@@ -45,8 +45,8 @@
         </div>
         <div class="archive-text">Добавить в закладки</div>
       </div>
-      <button class="archive-btn">Почитать</button>
-      <img src="assets/img/home/novel-img.svg" alt="novel card img">
+      <button class="archive-btn" [routerLink]="['/catalog', randomBook._id]">Почитать</button>
+      <img [src]="imgURL" alt="novel card img">
     </section>
   </section>
   <section class="hot">

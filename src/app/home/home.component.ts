@@ -1,8 +1,9 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {interval, Observable, Subscription} from "rxjs";
+import {interval, Observable, Subscription, tap} from "rxjs";
 import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
 import {HomeService} from "./home.service";
 import {IBookDto} from "../admin/pages/books/books.interface";
+import {urlPathHandler} from "../utils/urls.util";
 
 @CleanSubscriptionsAndMemoryLeaks()
 @Component({
@@ -19,13 +20,20 @@ export class HomeComponent implements OnInit {
   slideArea!: HTMLDivElement;
   slidePictures!: HTMLDivElement[];
   timer!: Subscription;
+  randomBook!: IBookDto;
+  imgURL = '';
 
   constructor(private service: HomeService) {
   }
 
   ngOnInit(): void {
     this.prepareSlider();
-    this.booksList$ = this.service.getBooks();
+    this.booksList$ = this.service.getBooks()
+      .pipe(tap((books) => {
+        const random = Math.floor(Math.random() * books.length);
+        this.randomBook = books[random];
+        this.imgURL = urlPathHandler('book-images',  this.randomBook.images[0] ?? 'no-image.jpg')
+      }))
     document.body.scrollTo({
       // top: 4500
     })
