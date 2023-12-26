@@ -1,11 +1,5 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
 import {CleanSubscriptionsAndMemoryLeaks} from "../utils/memory-leak.util";
-import {BookService} from "./book.service";
-import {Observable} from "rxjs";
-import {IBookDto} from "../admin/pages/books/books.interface";
-import {urlPathHandler} from "../utils/urls.util";
-
 
 
 @CleanSubscriptionsAndMemoryLeaks()

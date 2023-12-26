@@ -4,8 +4,6 @@ import {IUserDto} from "../admin/pages/admin-users/admin-users.interface";
 import {PersonalService} from "./personal.service";
 import {Observable} from "rxjs";
 import {IBookDto} from "../admin/pages/books/books.interface";
-import {ConfigsService} from "../shared/services/configs.service";
-
 
 
 @CleanSubscriptionsAndMemoryLeaks()
