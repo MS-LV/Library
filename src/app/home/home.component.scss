@@ -204,8 +204,9 @@
 
   > img {
     position: absolute;
-    right: 5.1875vw;
-    bottom: 0;
+    top: 50%;
+    right: 10px;
+    translate: 0 -50%;
     max-width: calc(50% - 5.1875vw);
   }
 }
